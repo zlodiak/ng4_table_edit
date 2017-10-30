@@ -1,0 +1,32 @@
+[
+	{
+		"id": "111",
+		"fname": "sergey",
+		"mname": "alex",
+		"lname": "kalinin",
+		"position": "general",
+		"gender": 1,
+		"married": false,
+		"city": "n"
+	},
+	{
+		"id": "222",
+		"fname": "ivan",
+		"mname": "ivanovich",
+		"lname": "ivanov",
+		"position": "manager",
+		"gender": 1,
+		"married": false,
+		"city": "moscow"
+	},
+	{
+		"id": "333",
+		"fname": "alina",
+		"mname": "petrovna",
+		"lname": "zagagullina",
+		"position": "cofee maker",
+		"gender": 0,
+		"married": true,
+		"city": "penza"
+	}
+]
