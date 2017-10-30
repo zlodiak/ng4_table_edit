@@ -12,6 +12,7 @@ import { Participant } from './types/participant';
 export class AppComponent implements OnInit {
 
   private participants: Participant[] = [];
+  private GENDERS_ARR: string[] = [];
   private GENDERS: Object = {
     0: 'female',
     1: 'male',
@@ -22,6 +23,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit () {
     this.getParticipants();
+
+    for(let prop in this.GENDERS) {
+      if (!this.GENDERS.hasOwnProperty(prop)) continue;
+      this.GENDERS_ARR.push(this.GENDERS[prop]);
+    }
+
+    console.log(this.GENDERS_ARR);
   }
 
   private getParticipants() {
