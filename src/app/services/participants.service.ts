@@ -1,19 +1,31 @@
 import { Injectable } from '@angular/core';
 
-import { Http } from '@angular/http';
-
-import { Observable } from 'rxjs/Observable';
-
-import { Config } from '../config';
-
 
 @Injectable()
 export class ParticipantsService {
 
-  constructor(private http: Http) { };
+  constructor() { }
 
-  getParticipants(): Observable<any> {
-    return this.http.get(Config.host + 'assets/json/participants.json');
-  };
+  getParticipants() {
+    return JSON.parse(localStorage.participants);
+  }
+
+  addParticipant(participant) {
+    let participants = JSON.parse(localStorage.participants);
+    participants.push(participant);
+    localStorage.participants(JSON.stringify(participants));
+  }
+
+  changeParticipant(id, col, value) {
+    let participants = JSON.parse(localStorage.participants);
+
+    participants.forEach((p) => {
+      if (p.id == id) {
+        console.log(p);
+        p[col] = value;
+      }
+    })
+    localStorage.participants = JSON.stringify(participants);
+  }
 
 }
