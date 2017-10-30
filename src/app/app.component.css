@@ -6,6 +6,7 @@
     td{
         padding: 10px;
         outline: 1px solid #ccc;
+        width: 16.6%;
     }
 
     .head{
@@ -18,4 +19,14 @@
 
     .input{
         display: none;
+    }
+
+    .married-slide:before{
+        content: 'no';
+    }
+    .married-slide{
+
+    }
+    .married-slide:after{
+        content: 'yes';
     }

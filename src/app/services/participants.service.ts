@@ -25,6 +25,7 @@ export class ParticipantsService {
         p[col] = value;
       }
     })
+    console.log('participants final', participants);
     localStorage.participants = JSON.stringify(participants);
   }
 

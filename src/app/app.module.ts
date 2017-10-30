@@ -6,7 +6,9 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import {  MatButtonModule,
           MatInputModule,
-          MatSelectModule} from '@angular/material';
+          MatSelectModule,
+          MatSlideToggleModule,
+          MatAutocompleteModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ParticipantsService } from './services/participants.service';
@@ -16,6 +18,8 @@ import { ParticipantsService } from './services/participants.service';
     AppComponent
   ],
   imports: [
+    MatAutocompleteModule,
+    MatSlideToggleModule,
     BrowserAnimationsModule,
     MatSelectModule,
     MatInputModule,

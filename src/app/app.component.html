@@ -32,15 +32,17 @@
 
     <td class="col-gender" id="line_{{ p?.id }}_gender">
       <div class="val" id="val_gender_{{ p?.id }}">{{ GENDERS[p?.gender] }}</div>
-      <mat-select>
-        <mat-option *ngFor="let gender of GENDERS_ARR; let i = index;" [value]="i">
+      <!--<mat-select [(ngModel)]="p?.gender">
+        <mat-option *ngFor="let gender of GENDERS; let i = index;" [value]="i">
           {{ gender }}
         </mat-option>
-      </mat-select>
+      </mat-select>-->
 
     </td>
 
-    <td class="col-married" id="line_{{ p?.id }}_married">{{ p?.married ? 'yes' : 'no' }}</td>
+    <td class="col-married" id="line_{{ p?.id }}_married">
+      <mat-slide-toggle class="married-slide" [(ngModel)]="p.married" (change)="marriedToggle($event, p?.id)" ></mat-slide-toggle>
+    </td>
 
     <td class="col-city" id="line_{{ p?.id }}_city" (dblclick)="handlerDblClickCity(p?.id)">
       <div class="val" id="val_city_{{ p?.id }}">{{ p?.city }}</div>

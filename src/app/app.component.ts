@@ -12,24 +12,16 @@ import { Participant } from './types/participant';
 export class AppComponent implements OnInit {
 
   private participants: Participant[] = [];
-  private GENDERS_ARR: string[] = [];
-  private GENDERS: Object = {
-    0: 'female',
-    1: 'male',
-    2: 'android'
-  };
+  private GENDERS: string[] = [
+    'female',
+    'male',
+    'android'
+  ];
 
   constructor(private participantsService: ParticipantsService) { }
 
   ngOnInit () {
     this.getParticipants();
-
-    for(let prop in this.GENDERS) {
-      if (!this.GENDERS.hasOwnProperty(prop)) continue;
-      this.GENDERS_ARR.push(this.GENDERS[prop]);
-    }
-
-    console.log(this.GENDERS_ARR);
   }
 
   private getParticipants() {
@@ -38,7 +30,7 @@ export class AppComponent implements OnInit {
   }
 
   private changeParticipant(id, col, value) {
-    //console.log(id, col, value);
+    console.log(id, col, value);
     this.participantsService.changeParticipant(id, col, value);
     this.getParticipants();
   }
@@ -79,6 +71,9 @@ export class AppComponent implements OnInit {
     //
   }
 
-
+  private marriedToggle(ev, id) {
+    console.log(ev.checked, id);
+    this.changeParticipant(id, 'married', ev.checked);
+  }
 
 }
