@@ -10,7 +10,7 @@
   </tr>
   </thead>
 
-  <tbody class="body" (dblclick)="handlerClick($event)">
+  <tbody class="body">
   <tr *ngFor="let p of participants; let i = index;" id="line_{{ p?.id }}">
     <td class="col-0" id="line_{{ p?.id }}_id">{{ p?.id }}</td>
 
@@ -20,9 +20,14 @@
       <span>{{ p?.lname }}</span>
     </td>
 
-    <td class="col-position" id="line_{{ p?.id }}_position">
-      <div class="val">{{ p?.position }}</div>
-      <input type="text" class="input" value="{{ p?.position }}">
+    <td class="col-position" id="line_{{ p?.id }}_position" (dblclick)="handlerDblClickPosition(p?.id)">
+      <div class="val" id="val_position_{{ p?.id }}">{{ p?.position }}</div>
+      <input class="input"
+             type="text"
+             id="inp_position_{{ p?.id }}"
+             value="{{ p?.position }}"
+             (blur)="handlerBlurPosition(p?.id)"
+             (keyup.enter)="handlerBlurPosition(p?.id)">
     </td>
 
     <td class="col-gender" id="line_{{ p?.id }}_gender">{{ GENDERS[p?.gender] }}</td>

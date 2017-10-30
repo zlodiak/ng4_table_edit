@@ -35,42 +35,42 @@ export class AppComponent implements OnInit {
     this.getParticipants();
   }
 
-  private handlerBlurCity(id) {
-    let val = document.getElementById('val_city_' + id);
-    let inp = document.getElementById('inp_city_' + id);
-    let newVal = (document.getElementById('inp_city_' + id) as HTMLInputElement).value;
+  private handlerBlurPosition(id) {
+    let val = document.getElementById('val_position_' + id);
+    let inp = document.getElementById('inp_position_' + id);
+    let newVal = (document.getElementById('inp_position_' + id) as HTMLInputElement).value;
 
-    this.changeParticipant(id, 'city', newVal)
-
-    val.style.display = 'block';
-    inp.style.display = 'none';
+    if (!newVal || newVal.trim().length === 0) {
+      alert('Enter value');
+    } else {
+      this.changeParticipant(id, 'position', newVal.trim());
+      val.style.display = 'block';
+      inp.style.display = 'none';
+    }
   }
 
-  private handlerDblClickCity(id) {
-    let val = document.getElementById('val_city_' + id);
-    let inp = document.getElementById('inp_city_' + id);
+  private handlerDblClickPosition(id) {
+    let val = document.getElementById('val_position_' + id);
+    let inp = document.getElementById('inp_position_' + id);
 
     val.style.display = 'none';
     inp.style.display = 'block';
     inp.focus();
   }
 
-  private handlerClick(event) {
-    /*let tagName = event.target.tagName
-    let elId = (tagName == 'SPAN') ? event.target.parentElement.id : event.target.id;
 
-    let rowId = elId.split('_')[1];
-    let colId = elId.split('_')[2];
-
-    console.log(elId, rowId, colId);
-
-    if (colId == 'id') {
-      console.log('rettt');
-      return;
-    }
-
-    let contentTD = document.getElementById(elId).innerHTML;
-    console.log('contentTD', contentTD);*/
+  private changeCity(id, col, value) {
+    //
   }
+
+  private handlerBlurCity(id) {
+    //
+  }
+
+  private handlerDblClickCity(id) {
+    //
+  }
+
+
 
 }
