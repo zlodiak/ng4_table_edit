@@ -1,25 +1,50 @@
 <table class="table">
   <thead class="head">
-  <tr>
-    <td class="col-0">ID</td>
-    <td class="col-1">FIO</td>
-    <td class="col-2">Position</td>
-    <td class="col-3">Gender</td>
-    <td class="col-4">Married</td>
-    <td class="col-5">City</td>
-  </tr>
+    <tr>
+      <td class="col-0">ID</td>
+      <td class="col-1">FIO</td>
+      <td class="col-2">Position</td>
+      <td class="col-3">Gender</td>
+      <td class="col-4">Married</td>
+      <td class="col-5">City</td>
+    </tr>
   </thead>
 
   <tbody class="body">
   <tr *ngFor="let p of participants; let i = index;" id="line_{{ p?.id }}">
+    <!-- id -->
     <td class="col-0" id="line_{{ p?.id }}_id">{{ p?.id }}</td>
 
-    <td class="col-names" id="line_{{ p?.id }}_names">
-      <span>{{ p?.fname }}</span>
-      <span>{{ p?.mname }}</span>
-      <span>{{ p?.lname }}</span>
+    <!-- name -->
+    <td class="col-names" id="line_{{ p?.id }}_names" (dblclick)="handlerDblClickName(p?.id)">
+      <div class="output-area" id="val_name_{{ p?.id }}">
+        <span>{{ p?.fname }}</span>
+        <span>{{ p?.mname }}</span>
+        <span>{{ p?.lname }}</span>
+      </div>
+
+      <div class="input-area" id="inp_name_{{ p?.id }}">
+        <form class="form">
+          <mat-form-field class="form-inner">
+            <input matInput placeholder="First name" [value]="p?.fname" id="inp_fname_{{ p?.id }}">
+          </mat-form-field>
+
+          <mat-form-field class="form-inner">
+            <input matInput placeholder="Middle name" [value]="p?.mname" id="inp_mname_{{ p?.id }}">
+          </mat-form-field>
+
+          <mat-form-field class="form-inner">
+            <input matInput placeholder="Last name" [value]="p?.lname" id="inp_lname_{{ p?.id }}">
+          </mat-form-field>
+        </form>
+
+        <button class="btn btn-common" mat-button (click)="submitName(p?.id)">
+          Отправить
+        </button>
+      </div>
     </td>
 
+    <!-- position -->
     <td class="col-position" id="line_{{ p?.id }}_position" (dblclick)="handlerDblClickPosition(p?.id)">
       <div class="val" id="val_position_{{ p?.id }}">{{ p?.position }}</div>
       <input class="input"
@@ -30,6 +55,7 @@
              (keyup.enter)="handlerBlurPosition(p?.id)">
     </td>
 
+    <!-- gender -->
     <td class="col-gender" id="line_{{ p?.id }}_gender">
       <mat-select [(ngModel)]="p.gender" (change)="changeGender($event.value, p?.id)">
         <mat-option *ngFor="let gender of GENDERS; let i = index;" [value]="i">
@@ -38,6 +64,7 @@
       </mat-select>
     </td>
 
+    <!-- married -->
     <td class="col-married" id="line_{{ p?.id }}_married">
       <mat-slide-toggle class="married-slide"
                         id="slide_{{ p?.id }}"
@@ -45,6 +72,7 @@
                         (change)="marriedToggle($event, p?.id)" ></mat-slide-toggle>
     </td>
 
+    <!-- city -->
     <td class="col-city" id="line_{{ p?.id }}_city" (dblclick)="handlerDblClickCity(p?.id)">
       <div class="val" id="val_city_{{ p?.id }}">{{ p?.city }}</div>
       <input class="input"

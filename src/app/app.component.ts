@@ -71,6 +71,45 @@ export class AppComponent implements OnInit {
     //
   }
 
+  private submitName(id) {
+    let val = document.getElementById('val_name_' + id);
+    let inp = document.getElementById('inp_name_' + id);
+    let newFname = (document.getElementById('inp_fname_' + id) as HTMLInputElement).value;
+    let newMname = (document.getElementById('inp_mname_' + id) as HTMLInputElement).value;
+    let newLname = (document.getElementById('inp_lname_' + id) as HTMLInputElement).value;
+
+    if (!newFname || newFname.trim().length === 0 ||
+        !newMname || newMname.trim().length === 0 ||
+        !newLname || newLname.trim().length === 0 ) {
+      alert('Enter names');
+    } else {
+      this.changeParticipant(id, 'fname', newFname.trim());
+      this.changeParticipant(id, 'mname', newMname.trim());
+      this.changeParticipant(id, 'lname', newLname.trim());
+      val.style.display = 'block';
+      inp.style.display = 'none';
+    }
+  }
+
+  private handlerDblClickName(id) {
+    const allVal = <HTMLElement[]><any>document.querySelectorAll('.output-area');
+    const allInp = <HTMLElement[]><any>document.querySelectorAll('.input-area');
+
+    allVal.forEach(function (v) {
+      v.style.display = 'block';
+    });
+
+    allInp.forEach(function (v) {
+      v.style.display = 'none';
+    });
+
+    const val = document.getElementById('val_name_' + id);
+    const inp = document.getElementById('inp_name_' + id);
+
+    val.style.display = 'none';
+    inp.style.display = 'block';
+  }
+
   private marriedToggle(ev, id) {
     // console.log(ev.checked, id);
     this.changeParticipant(id, 'married', ev.checked);

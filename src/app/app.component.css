@@ -30,3 +30,7 @@
     .married-slide:after{
         content: 'yes';
     }
+
+    .input-area{
+        display: none;
+    }
