@@ -1,6 +1,6 @@
 [
 	{
-		"id": "111",
+		"id": 1,
 		"fname": "sergey",
 		"mname": "alex",
 		"lname": "kalinin",
@@ -10,7 +10,7 @@
 		"city": "n"
 	},
 	{
-		"id": "222",
+		"id": 2,
 		"fname": "ivan",
 		"mname": "ivanovich",
 		"lname": "ivanov",
@@ -20,7 +20,7 @@
 		"city": "moscow"
 	},
 	{
-		"id": "333",
+		"id": 3,
 		"fname": "alina",
 		"mname": "petrovna",
 		"lname": "zagagullina",

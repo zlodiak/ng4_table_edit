@@ -8,7 +8,7 @@ import {  MatButtonModule,
           MatInputModule,
           MatSelectModule,
           MatSlideToggleModule,
-          MatAutocompleteModule } from '@angular/material';
+          MatAutocompleteModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ParticipantsService } from './services/participants.service';

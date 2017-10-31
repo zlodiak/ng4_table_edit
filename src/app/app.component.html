@@ -11,93 +11,86 @@
   </thead>
 
   <tbody class="body">
-  <tr *ngFor="let p of participants; let i = index;" id="line_{{ p?.id }}">
-    <!-- id -->
-    <td class="col-0" id="line_{{ p?.id }}_id">{{ p?.id }}</td>
+    <tr *ngFor="let p of participants; let i = index;" id="line_{{ p?.id }}">
+      <!-- id -->
+      <td class="col-0" id="line_{{ p?.id }}_id">{{ p?.id }}</td>
 
-    <!-- name -->
-    <td class="col-names" id="line_{{ p?.id }}_names" (dblclick)="handlerDblClickName(p?.id)" onselectstart="return false" onmousedown="return false">
-      <div class="output-area" id="val_name_{{ p?.id }}">
-        <span>{{ p?.fname }}</span>
-        <span>{{ p?.mname }}</span>
-        <span>{{ p?.lname }}</span>
-      </div>
+      <!-- name -->
+      <td class="col-names" id="line_{{ p?.id }}_names" (dblclick)="handlerDblClickName(p?.id)" onselectstart="return false" onmousedown="return false">
+        <div class="output-area" id="val_name_{{ p?.id }}">
+          <span>{{ p?.fname }}</span>
+          <span>{{ p?.mname }}</span>
+          <span>{{ p?.lname }}</span>
+        </div>
 
-      <div class="input-area" id="inp_name_{{ p?.id }}">
-        <form class="form">
+        <div class="input-area" id="inp_name_{{ p?.id }}">
+          <form class="form">
+            <mat-form-field class="form-inner">
+              <input matInput placeholder="First name" [value]="p?.fname ? p?.fname : ''" id="inp_fname_{{ p?.id }}">
+            </mat-form-field>
+
+            <mat-form-field class="form-inner">
+              <input matInput placeholder="Middle name" [value]="p?.fname ? p?.fname : ''" id="inp_mname_{{ p?.id }}">
+            </mat-form-field>
+
+            <mat-form-field class="form-inner">
+              <input matInput placeholder="Last name" [value]="p?.fname ? p?.fname : ''" id="inp_lname_{{ p?.id }}">
+            </mat-form-field>
+          </form>
+
+          <button class="btn btn-common" mat-button (click)="submitName(p?.id)">
+            Отправить
+          </button>
+        </div>
+      </td>
+
+      <!-- position -->
+      <td class="col-position" id="line_{{ p?.id }}_position" (dblclick)="handlerDblClickPosition(p?.id)" onselectstart="return false" onmousedown="return false">
+        <div class="val output-area" id="val_position_{{ p?.id }}">{{ p?.position }}</div>
+        <form class="form input input-area" id="inp_position_{{ p?.id }}" >
           <mat-form-field class="form-inner">
-            <input matInput placeholder="First name" [value]="p?.fname" id="inp_fname_{{ p?.id }}">
-          </mat-form-field>
-
-          <mat-form-field class="form-inner">
-            <input matInput placeholder="Middle name" [value]="p?.mname" id="inp_mname_{{ p?.id }}">
-          </mat-form-field>
-
-          <mat-form-field class="form-inner">
-            <input matInput placeholder="Last name" [value]="p?.lname" id="inp_lname_{{ p?.id }}">
+            <input matInput
+                   id="inp_position_{{ p?.id }}_"
+                   placeholder="Должность"
+                   value="{{ p?.position }}"
+                   (blur)="handlerBlurPosition(p?.id)"
+                   (keyup.enter)="handlerBlurPosition(p?.id)">
           </mat-form-field>
         </form>
+      </td>
 
-        <button class="btn btn-common" mat-button (click)="submitName(p?.id)">
-          Отправить
-        </button>
-      </div>
-    </td>
+      <!-- gender -->
+      <td class="col-gender" id="line_{{ p?.id }}_gender">
+        <mat-select [(ngModel)]="p.gender" (change)="changeGender($event.value, p?.id)">
+          <mat-option *ngFor="let gender of GENDERS; let i = index;" [value]="i">
+            {{ gender }}
+          </mat-option>
+        </mat-select>
+      </td>
 
-    <!-- position -->
-    <td class="col-position" id="line_{{ p?.id }}_position" (dblclick)="handlerDblClickPosition(p?.id)" onselectstart="return false" onmousedown="return false">
-      <div class="val output-area" id="val_position_{{ p?.id }}">{{ p?.position }}</div>
-      <form class="form input input-area" id="inp_position_{{ p?.id }}" >
-        <mat-form-field class="form-inner">
-          <input matInput
-                 id="inp_position_{{ p?.id }}_"
-                 placeholder="Должность"
-                 value="{{ p?.position }}"
-                 (blur)="handlerBlurPosition(p?.id)"
-                 (keyup.enter)="handlerBlurPosition(p?.id)">
-        </mat-form-field>
-      </form>
+      <!-- married -->
+      <td class="col-married" id="line_{{ p?.id }}_married">
+        <mat-slide-toggle class="married-slide"
+                          id="slide_{{ p?.id }}"
+                          [(ngModel)]="p.married"
+                          (change)="marriedToggle($event, p?.id)" ></mat-slide-toggle>
+      </td>
 
+      <!-- city -->
+      <td class="col-city" id="line_{{ p?.id }}_city" (dblclick)="handlerDblClickCity(p?.id)">
+        <div class="val" id="val_city_{{ p?.id }}">{{ p?.city }}</div>
 
-      <!--<input class="input"
-             type="text"
-             id="inp_position_{{ p?.id }}"
-             value="{{ p?.position }}"
-             (blur)="handlerBlurPosition(p?.id)"
-             (keyup.enter)="handlerBlurPosition(p?.id)">-->
-    </td>
-
-    <!-- gender -->
-    <td class="col-gender" id="line_{{ p?.id }}_gender">
-      <mat-select [(ngModel)]="p.gender" (change)="changeGender($event.value, p?.id)">
-        <mat-option *ngFor="let gender of GENDERS; let i = index;" [value]="i">
-          {{ gender }}
-        </mat-option>
-      </mat-select>
-    </td>
-
-    <!-- married -->
-    <td class="col-married" id="line_{{ p?.id }}_married">
-      <mat-slide-toggle class="married-slide"
-                        id="slide_{{ p?.id }}"
-                        [(ngModel)]="p.married"
-                        (change)="marriedToggle($event, p?.id)" ></mat-slide-toggle>
-    </td>
-
-    <!-- city -->
-    <td class="col-city" id="line_{{ p?.id }}_city" (dblclick)="handlerDblClickCity(p?.id)">
-      <div class="val" id="val_city_{{ p?.id }}">{{ p?.city }}</div>
-      <input class="input"
-             type="text"
-             id="inp_city_{{ p?.id }}"
-             value="{{ p?.city }}"
-             (blur)="handlerBlurCity(p?.id)"
-             (keyup.enter)="handlerBlurCity(p?.id)">
-    </td>
-  </tr>
+        <input class="input"
+               type="text"
+               id="inp_city_{{ p?.id }}"
+               value="{{ p?.city }}"
+               (blur)="handlerBlurCity(p?.id)"
+               (keyup.enter)="handlerBlurCity(p?.id)">
+      </td>
+    </tr>
   </tbody>
 </table>
 
-<button class="btn btn-common" mat-button>
+<button class="btn btn-common" mat-button (click)="addParticipant()">
   Добавить нового участника
 </button>

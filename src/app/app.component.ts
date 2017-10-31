@@ -65,11 +65,12 @@ export class AppComponent implements OnInit {
 
     let val = document.getElementById('val_position_' + id);
     let inp = document.getElementById('inp_position_' + id);
+    let inp_ = document.getElementById('inp_position_' + id + '_');
 
     val.style.display = 'none';
     inp.style.display = 'block';
+    inp_.focus();
   }
-
 
   private changeCity(id, col, value) {
     //
@@ -130,6 +131,24 @@ export class AppComponent implements OnInit {
   private changeGender(val, id) {
     // console.log(val, id);
     this.changeParticipant(id, 'gender', val);
+  }
+
+  private addParticipant() {
+    this.getParticipants();
+
+    let maxId = this.participants[0].id || 1;
+    this.participants.forEach((p) => {
+      if(p.id > maxId) { maxId = p.id }
+    });
+    //console.log('maxId', maxId);
+    ++maxId;
+
+    const newParticipant = new Participant;
+    newParticipant.id = maxId;
+
+    this.participants.push(newParticipant);
+
+    localStorage.participants = JSON.stringify(this.participants);
   }
 
 }
