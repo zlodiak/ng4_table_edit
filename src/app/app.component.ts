@@ -26,11 +26,11 @@ export class AppComponent implements OnInit {
 
   private getParticipants() {
     this.participants = this.participantsService.getParticipants();
-    console.log(this.participants);
+    // console.log(this.participants);
   }
 
   private changeParticipant(id, col, value) {
-    console.log(id, col, value);
+    // console.log(id, col, value);
     this.participantsService.changeParticipant(id, col, value);
     this.getParticipants();
   }
@@ -72,8 +72,13 @@ export class AppComponent implements OnInit {
   }
 
   private marriedToggle(ev, id) {
-    console.log(ev.checked, id);
+    // console.log(ev.checked, id);
     this.changeParticipant(id, 'married', ev.checked);
+  }
+
+  private changeGender(val, id) {
+    // console.log(val, id);
+    this.changeParticipant(id, 'gender', val);
   }
 
 }
