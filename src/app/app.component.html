@@ -16,7 +16,7 @@
     <td class="col-0" id="line_{{ p?.id }}_id">{{ p?.id }}</td>
 
     <!-- name -->
-    <td class="col-names" id="line_{{ p?.id }}_names" (dblclick)="handlerDblClickName(p?.id)">
+    <td class="col-names" id="line_{{ p?.id }}_names" (dblclick)="handlerDblClickName(p?.id)" onselectstart="return false" onmousedown="return false">
       <div class="output-area" id="val_name_{{ p?.id }}">
         <span>{{ p?.fname }}</span>
         <span>{{ p?.mname }}</span>
@@ -45,14 +45,26 @@
     </td>
 
     <!-- position -->
-    <td class="col-position" id="line_{{ p?.id }}_position" (dblclick)="handlerDblClickPosition(p?.id)">
-      <div class="val" id="val_position_{{ p?.id }}">{{ p?.position }}</div>
-      <input class="input"
+    <td class="col-position" id="line_{{ p?.id }}_position" (dblclick)="handlerDblClickPosition(p?.id)" onselectstart="return false" onmousedown="return false">
+      <div class="val output-area" id="val_position_{{ p?.id }}">{{ p?.position }}</div>
+      <form class="form input input-area" id="inp_position_{{ p?.id }}" >
+        <mat-form-field class="form-inner">
+          <input matInput
+                 id="inp_position_{{ p?.id }}_"
+                 placeholder="Должность"
+                 value="{{ p?.position }}"
+                 (blur)="handlerBlurPosition(p?.id)"
+                 (keyup.enter)="handlerBlurPosition(p?.id)">
+        </mat-form-field>
+      </form>
+
+
+      <!--<input class="input"
              type="text"
              id="inp_position_{{ p?.id }}"
              value="{{ p?.position }}"
              (blur)="handlerBlurPosition(p?.id)"
-             (keyup.enter)="handlerBlurPosition(p?.id)">
+             (keyup.enter)="handlerBlurPosition(p?.id)">-->
     </td>
 
     <!-- gender -->

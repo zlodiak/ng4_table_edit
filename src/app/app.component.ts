@@ -38,7 +38,9 @@ export class AppComponent implements OnInit {
   private handlerBlurPosition(id) {
     let val = document.getElementById('val_position_' + id);
     let inp = document.getElementById('inp_position_' + id);
-    let newVal = (document.getElementById('inp_position_' + id) as HTMLInputElement).value;
+    let newVal = (document.getElementById('inp_position_' + id + '_') as HTMLInputElement).value;
+
+    console.log('newVal', newVal);
 
     if (!newVal || newVal.trim().length === 0) {
       alert('Enter value');
@@ -50,12 +52,22 @@ export class AppComponent implements OnInit {
   }
 
   private handlerDblClickPosition(id) {
+    const allVal = <HTMLElement[]><any>document.querySelectorAll('.output-area');
+    const allInp = <HTMLElement[]><any>document.querySelectorAll('.input-area');
+
+    allVal.forEach(function (v) {
+      v.style.display = 'block';
+    });
+
+    allInp.forEach(function (v) {
+      v.style.display = 'none';
+    });
+
     let val = document.getElementById('val_position_' + id);
     let inp = document.getElementById('inp_position_' + id);
 
     val.style.display = 'none';
     inp.style.display = 'block';
-    inp.focus();
   }
 
 
